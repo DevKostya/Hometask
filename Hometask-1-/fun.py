@@ -3,6 +3,7 @@ import csv
 import numpy
 import operator
 
+#Перевод из cvs в двумерный массив
 def cvs_to_array(dir):
     with open(os.getcwd()+dir,"r") as f:
         Data_csv = csv.reader(f, delimiter=',')
@@ -14,6 +15,7 @@ def cvs_to_array(dir):
         Data=numpy.delete(Data, (0), axis=0)
         return Data
 
+#Проверка на значение int
 def Check_int(Num):
     try:
         int(Num)
@@ -21,6 +23,7 @@ def Check_int(Num):
     except ValueError:
         return False
 
+#Список неоцененных фильмов
 def list_of_not_rate(User,Data):
     List=[]
     for i in Data:
@@ -33,6 +36,7 @@ def list_of_not_rate(User,Data):
             return List
             break
 
+#Вычисление коэффициентов sim
 def sim(User,Data):
     List=[]
     SimArray = []
@@ -52,9 +56,11 @@ def sim(User,Data):
         SimArray.append((Sum1/(Sum2**(1/2)*Sum3**(1/2))))
     return dict((counter+1, row) for counter,row in enumerate(SimArray))
 
+#Сортировка массива от большего к меньшему, на 0 месте будет сам пользователь с значением 1
 def sort(SimArray):
     return sorted(SimArray.items(), key=operator.itemgetter(1), reverse=True)
 
+#Среднее значение оценки у пользователей для всех оценненых фильмов
 def AvgRate(Data):
     AvgArray=[]
     for i in Data:
@@ -68,6 +74,7 @@ def AvgRate(Data):
         AvgArray.append(Sum/Counter)
     return AvgArray
 
+#Высчитываение рейтинга
 def Rate(AvgArray,SimArray,ListRate,Data,User,kNN):
     Result=[]
     for Movie in ListRate:
@@ -81,6 +88,7 @@ def Rate(AvgArray,SimArray,ListRate,Data,User,kNN):
         Result.append(round(AvgArray[int(User)-1]+Sum/ModSum,3))
     return Result
 
+#Вычисление коэффициентов sim для фильмов, которые нужно порекомендовать
 def simPlaceDay(User,Data):
     List=[]
     SimArray = []
@@ -100,6 +108,7 @@ def simPlaceDay(User,Data):
         SimArray.append(Sum1/Sum2)
     return dict((counter+1, row) for counter,row in enumerate(SimArray))
 
+#Объединение коэффициентов всех фильмов по оценке, по дню недели, по месту
 def Concat(SimArray,SimArrayPlace,SimArrayDay):
     i=1
     SimArrayAll=[]

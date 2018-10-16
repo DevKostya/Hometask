@@ -25,9 +25,9 @@ Rate=fun.Rate(AvgArray,SimArray,ListRate,Data,User,kNN)
 ListAll=[i+1 for i in range(len(Data[1])-1)]
 MostRate=fun.Rate(AvgArray,SimArray,ListAll,Data,User,kNN)
 
-
+#формуруем json
 DictResult= {"user": User, "1" : {}, "2" : {}}
-i=1
+i=0
 while i<len(ListRate):
     DictResult["1"]["movie " + str(ListRate[i])]=Rate[i]
     i=i+1
