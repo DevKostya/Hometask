@@ -11,19 +11,12 @@ Hometask
 {
 
     "user": "1",
-    
     "1": {
-    
         "movie 1": 3.126,
-        
         "movie 5": 2.933,
-        
         "movie 6": 2.411,
-        
         "movie 7": 3.949,
-        
         "movie 10": 2.668,
-        
         "movie 17": 1.305,
         "movie 23": 2.666,
         "movie 24": 3.289,
