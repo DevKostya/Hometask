@@ -47,6 +47,7 @@ def sim(User,Data):
         Sum2 = 0;
         Sum3 = 0;
         i=1
+        j=0;
         while i < len(List):
             if (List[i]!=" -1" and ListArray[i]!=" -1"):
                 Sum1=Sum1+float(List[i])*float(ListArray[i])
@@ -81,10 +82,14 @@ def Rate(AvgArray,SimArray,ListRate,Data,User,kNN):
         Sum=0
         ModSum=0
         NumPeople=1
-        while NumPeople<=kNN:
-            Sum=Sum+SimArray[NumPeople][1]*(float(Data[SimArray[NumPeople][0]-1][Movie])-AvgArray[SimArray[NumPeople][0]-1])
-            ModSum=ModSum+SimArray[NumPeople][1]
-            NumPeople=NumPeople+1
+        j=0
+        while NumPeople+j<=kNN:
+            if(Data[SimArray[NumPeople+j][0]-1][Movie]!=" -1"):
+                Sum=Sum+SimArray[NumPeople+j][1]*(float(Data[SimArray[NumPeople+j][0]-1][Movie])-AvgArray[SimArray[NumPeople+j][0]-1])
+                ModSum=ModSum+SimArray[NumPeople+j][1]
+                NumPeople=NumPeople+1
+            else:
+                j=j+1
         Result.append(round(AvgArray[int(User)-1]+Sum/ModSum,3))
     return Result
 
