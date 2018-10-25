@@ -8,16 +8,17 @@ Hometask
 {
     "user": "1",
     "1": {
-        "movie 5": 2.383,
-        "movie 6": 1.253,
+        "movie 1": 3.126,
+        "movie 5": 2.933,
+        "movie 6": 2.411,
         "movie 7": 3.949,
         "movie 10": 2.668,
-        "movie 17": 0.957,
+        "movie 17": 1.305,
         "movie 23": 2.666,
-        "movie 24": 2.675,
-        "movie 27": 2.107
+        "movie 24": 3.289,
+        "movie 27": 2.69
     },
     "2": {
-        "movie 6": 3.949
+        "movie 25": 4.295
     }
 }
