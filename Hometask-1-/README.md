@@ -10,20 +10,41 @@ Hometask
 Результат для 1 пользователя
 {
 
-    {
-    "user": "1",
+    "user": 7,
     "1": {
-        "movie 1": 3.126,
-        "movie 5": 2.933,
-        "movie 6": 2.411,
-        "movie 7": 3.949,
-        "movie 10": 2.668,
-        "movie 17": 1.305,
-        "movie 23": 2.666,
-        "movie 24": 3.289,
-        "movie 27": 2.69
+        "Movie 10": 2.55,
+        "Movie 12": 3.13,
+        "Movie 17": 0.838,
+        "Movie 18": 1.972,
+        "Movie 26": 3.563
     },
     "2": {
-        "movie 25": 4.295
+        "Movie 26": 3.834
+    },
+    "3": {
+        "Movie 26": " The Usual Suspects"
+    },
+    "4": {
+        "Actors: ": [
+            "Clark Gregg",
+            "Benicio del Toro",
+            "Pete Postlethwaite",
+            "Suzy Amis Cameron",
+            "Michelle Clunie",
+            "Gabriel Byrne",
+            "Stephen Baldwin",
+            "Christopher McQuarrie",
+            "Chazz Palminteri",
+            "Kevin Pollak",
+            "C\u00e1stulo Guerra",
+            "Christine Estabrook",
+            "Frank Medrano",
+            "Dan Hedaya",
+            "Giancarlo Esposito",
+            "Louis Lombardi",
+            "Paul Bartel",
+            "Ron Gilbert",
+            "Kevin Spacey"
+        ]
     }
     }
