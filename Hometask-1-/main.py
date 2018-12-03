@@ -11,7 +11,7 @@ DataFilmName_filepath="/InputData/Movie_names.csv"
 DataFilmName=fun.cvs_to_array(DataFilmName_filepath,0)
 
 
-with open('Output.json', 'a')as outfile:
+with open('Output.json', "w")as outfile:
     pass
 
 kNN=7
