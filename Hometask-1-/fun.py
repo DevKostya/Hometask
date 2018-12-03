@@ -2,9 +2,11 @@ import os
 import csv
 import numpy
 import operator
+from SPARQLWrapper import SPARQLWrapper, JSON
+from requests import get
 
 #Перевод из cvs в двумерный массив
-def cvs_to_array(dir):
+def cvs_to_array(dir, flag):
     with open(os.getcwd()+dir,"r") as f:
         Data_csv = csv.reader(f, delimiter=',')
         Data=[]
@@ -12,7 +14,8 @@ def cvs_to_array(dir):
             Data.append([])
             for value in row:
                 Data[counter].append(value)
-        Data=numpy.delete(Data, (0), axis=0)
+        if (flag!=0):
+            Data=numpy.delete(Data, (0), axis=0)
         return Data
 
 #Проверка на значение int
@@ -27,7 +30,7 @@ def Check_int(Num):
 def list_of_not_rate(User,Data):
     List=[]
     for i in Data:
-        if (i[0] == "User " + User):
+        if (i[0] == "User " + str(User)):
             Num=0
             for j in i:
                 if (j == " -1"):
@@ -82,14 +85,10 @@ def Rate(AvgArray,SimArray,ListRate,Data,User,kNN):
         Sum=0
         ModSum=0
         NumPeople=1
-        j=0
-        while NumPeople+j<=kNN:
-            if(Data[SimArray[NumPeople+j][0]-1][Movie]!=" -1"):
-                Sum=Sum+SimArray[NumPeople+j][1]*(float(Data[SimArray[NumPeople+j][0]-1][Movie])-AvgArray[SimArray[NumPeople+j][0]-1])
-                ModSum=ModSum+SimArray[NumPeople+j][1]
-                NumPeople=NumPeople+1
-            else:
-                j=j+1
+        while NumPeople<=kNN:
+            Sum=Sum+SimArray[NumPeople][1]*(float(Data[SimArray[NumPeople][0]-1][Movie])-AvgArray[SimArray[NumPeople][0]-1])
+            ModSum=ModSum+SimArray[NumPeople][1]
+            NumPeople=NumPeople+1
         Result.append(round(AvgArray[int(User)-1]+Sum/ModSum,3))
     return Result
 
@@ -121,3 +120,33 @@ def Concat(SimArray,SimArrayPlace,SimArrayDay):
         SimArrayAll.append(float(SimArray[i])*float(SimArrayPlace[i])*float(SimArrayDay[i]))
         i=i+1
     return SimArrayAll
+
+def getFilmUri(movie_title):
+    json = get('https://www.wikidata.org/w/api.php', {
+        'action': 'wbgetentities',
+        'titles': movie_title,
+        'sites': 'enwiki',
+        'props': '',
+        'format': 'json'
+    }).json()
+    result = list(json['entities'])[0]
+    return result
+
+def get_actors(filmUri):
+    sparql = SPARQLWrapper("https://query.wikidata.org/sparql")
+    sparql.setQuery("""#10
+    SELECT ?actorPulp ?actorPulpLabel 
+    WHERE {       
+     wd:%s wdt:P161 ?actorPulp
+     minus
+    {  
+    wd:Q104123 wdt:P161 ?actorPulp.
+    ?film wdt:P31 wd:Q11424.
+    ?film wdt:P161 ?actorPulp.
+    ?film wdt:P577 ?date.
+    filter(?date<"1994-05-12T00:00:00Z"^^xsd:dateTime)
+    }     
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+    }""" % filmUri)
+    sparql.setReturnFormat(JSON)
+    return sparql.query().convert()
