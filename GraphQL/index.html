@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Тег SELECT</title>
+ </head>
+ <body>  
+	<form>
+		<select name="select" id="select">
+          <option value="1">Яблоко</option>
+          <option value="2">Картошка</option>
+          <option value="3">Апельсин</option>
+          <option value="4">Вишня</option>
+		  <option value="5">Марковка</option>
+		  <option value="6">Бананы</option>
+      </select></td>
+	</form>	  
+	<input type="text" id="currency" placeholder="Валюта(USD*,EUR,...)">
+   <p><input type="submit" value="Отправить" id="buttom"></p>
+   <input type="text" id="output">
+ </body>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script>
+ 
+ var Curs='USD';
+ var currency;
+ var IDproduct=1;
+$(document).on('change', '#select', function () {
+	IDproduct=$(this).val();
+ });
+$( "#buttom" ).click(function() {
+  if (document.getElementById("currency").value!="")
+	Curs=document.getElementById("currency").value;
+  $.ajax({
+  type: 'POST',
+  url: 'getCurs.php',
+  data: 'Curs='+Curs,
+  success: function(data) {
+    currency=data;
+  }
+  });
+
+  fetch('/graphql.php', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+  body: JSON.stringify({query: "{product(id:"+IDproduct+") {id,name,cost}}"})
+  })
+  .then(r => r.json())
+  .then ()
+  .then(data => document.getElementById("output").value = data.data.product.cost*currency);
+  });
+ </script>
+</html>
