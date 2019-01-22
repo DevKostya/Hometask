@@ -28,10 +28,12 @@ $( "#buttom" ).click(function() {
   success: function(data) {
     if(data=="g") {
 		alert("you are login");
+		console.log("login");
 		document.getElementById("login").remove();
 		document.getElementById("password").remove();
 	}
 	else{
+		console.log("not login");
 		alert("you aren't login");
 	}
   }
@@ -50,9 +52,11 @@ $( "#reg" ).click(function() {
   success: function(data1) {
 	console.log(data1);
     if(data1=="g") {
+		console.log("reg");
 		alert("you are registered");
 	}
 	else{
+		console.log("not reg");
 		alert("you aren't registered");
 	}
   }

@@ -6,44 +6,65 @@ use Tarantool\Client\Client;
 use Tarantool\Client\Connection\StreamConnection;
 use Tarantool\Client\Packer\PurePacker;
 
-/*$Ulogin=$_POST["login"];
-$Upassword=$_POST["password"];*/
-$Ulogin=1;
-$Upassword=1;
+
+$Ulogin=$_POST["login"];
+$Upassword=$_POST["password"];
 $host = 'localhost'; 
-$database = 'test'; 
-$user = 'root';
-$password = ''; 
+$database = 'password'; 
+$user = 'admin';
+$password = 'password'; 
 $mysqli = new mysqli($host, $user, $password, $database);
 $qu='select id, password from password where login="'.mysqli_real_escape_string($mysqli,$Ulogin).'"';
 $query = mysqli_query($mysqli,$qu);
 $data = mysqli_fetch_assoc($query);
-if($data['password'] === md5(md5($Upassword)))
+if($data['password'] === md5(md5(trim($Upassword))))
     {
-    $string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
-    $hash = "";
-    $clen = strlen($string) - 1;
-    while (strlen($hash) < 6) {
-        $hash .= $string[mt_rand(0,$clen)];
-    }
-
-    $conn = new StreamConnection('0.0.0.0:3311');
-    $client = new Client($conn, new PurePacker());
-	$space = $client->getSpace('lab5');
-
-	$result = $space->select([(int)$data['user_id']]);
+	#generate hach for user
+    	$string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
+    	$hash = "";
+    	$clen = strlen($string) - 1;
+    	while (strlen($hash) < 6) {
+        	$hash .= $string[mt_rand(0,$clen)];
+    	}
+	#connect to tarantool (https://github.com/tarantool-php/client)
+	$conn = new StreamConnection();
+	$client = new Client($conn, new PurePacker());
+  	$space = $client->getSpace('example');
+	$result = $space->select([(int)$data['id']]);
+	$ehash="";
 	$ehash = $result->getData()[0][1];
-	if($ehash == "")
+	var_dump($_COOKIE['hash']);
+	var_dump($_COOKIE['id']);
+	var_dump($ehash);
+	var_dump($data['id']);
+	#chack coockie
+	if ($ehash!="")
 	{
-        	$space->insert([(int)$data['user_id'], $hash]);
+		if($ehash !== $_COOKIE['hash'] || $data['id']!==$_COOKIE['id'])
+    		{
+			
+        		setcookie("id", $data['id'], time()+3600/*1hour*/);
+        		setcookie("hash", $ehash, time()+3600,null,null,null,true);
+			/*$space->insert([(int)$data['id'], $hash]);*/
+        		echo "first time log in a row";
+    		}
+    		else
+    		{
+			setcookie("id", $data['id'], time()+3600/*1hour*/);
+        		setcookie("hash", $ehash, time()+3600,null,null,null,true);
+        		echo "second log in a row";
+    		}
 	}
-	else
+	else 
 	{
-		$hash = $ehash;
+		$space->insert([(int)$data['id'], $hash]);
+		echo "first log";
 	}
-    setcookie("id", $data['user_id'], time()+60*60*24*30);
-    setcookie("hash", $hash, time()+60*60*24*30,null,null,null,true);
-	echo "g";
+
+}
+else
+{
+	echo "not login";
 }
 
 mysqli_close($mysqli);
