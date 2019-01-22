@@ -1,0 +1,52 @@
+tarantool> box.cfg{listen=3311}
+2019-01-22 18:15:01.153 [13675] main/101/interactive I> systemd: NOTIFY_SOCKET variable is empty, skipping
+2019-01-22 18:15:01.153 [13675] main/101/interactive C> Tarantool 1.10.2-111-gb4e69616a
+2019-01-22 18:15:01.153 [13675] main/101/interactive C> log level 5
+2019-01-22 18:15:01.154 [13675] main/101/interactive I> mapping 268435456 bytes for memtx tuple arena...
+2019-01-22 18:15:01.154 [13675] main/101/interactive I> mapping 134217728 bytes for vinyl tuple arena...
+2019-01-22 18:15:01.155 [13675] iproto/101/main I> binary: bound to 0.0.0.0:3311
+2019-01-22 18:15:01.155 [13675] main/101/interactive I> initializing an empty data directory
+2019-01-22 18:15:01.158 [13675] snapshot/101/main I> saving snapshot `./00000000000000000000.snap.inprogress'
+2019-01-22 18:15:01.192 [13675] snapshot/101/main I> done
+2019-01-22 18:15:01.193 [13675] main/101/interactive I> ready to accept requests
+2019-01-22 18:15:01.193 [13675] main/107/checkpoint_daemon I> started
+2019-01-22 18:15:01.193 [13675] main/107/checkpoint_daemon I> scheduled the next snapshot at Tue Jan 22 19:34:00 2019
+---
+...
+
+tarantool> box.schema.space.create('examples',{id=999})
+---
+- engine: memtx
+  before_replace: 'function: 0x412425d0'
+  on_replace: 'function: 0x412425a8'
+  field_count: 0
+  temporary: false
+  index: []
+  is_local: false
+  enabled: false
+  name: examples
+  id: 999
+- created
+...
+
+tarantool> box.space.examples:create_index('primary', {type = 'hash', parts = {1, 'unsigned'}})
+---
+- unique: true
+  parts:
+  - type: unsigned
+    is_nullable: false
+    fieldno: 1
+  id: 0
+  space_id: 999
+  name: primary
+  type: HASH
+...
+
+tarantool> box.schema.user.grant('guest','read,write','space','examples')
+---
+...
+
+tarantool> box.schema.user.grant('guest','read','space','_space')
+---
+...
+
