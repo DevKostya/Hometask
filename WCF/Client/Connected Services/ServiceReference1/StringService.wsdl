@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="StringService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8080/StringService?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8080/StringService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/StringService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/kNN" />
+      <xsd:import schemaLocation="http://localhost:8080/StringService?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IStringService_ReadData_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadData" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_ReadData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_MakeData_InputMessage">
+    <wsdl:part name="parameters" element="tns:MakeData" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_MakeData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MakeDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_AddClass_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddClass" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_AddClass_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddClassResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_IncreaseRequests_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncreaseRequests" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_IncreaseRequests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncreaseRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_CountRequests_InputMessage">
+    <wsdl:part name="parameters" element="tns:CountRequests" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_CountRequests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CountRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_IncreaseClients_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncreaseClients" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_IncreaseClients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncreaseClientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_DecreaseClients_InputMessage">
+    <wsdl:part name="parameters" element="tns:DecreaseClients" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_DecreaseClients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DecreaseClientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_CountClients_InputMessage">
+    <wsdl:part name="parameters" element="tns:CountClients" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_CountClients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CountClientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_ClassifyObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClassifyObject" />
+  </wsdl:message>
+  <wsdl:message name="IStringService_ClassifyObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClassifyObjectResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IStringService">
+    <wsdl:operation name="ReadData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStringService/ReadData" message="tns:IStringService_ReadData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStringService/ReadDataResponse" message="tns:IStringService_ReadData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStringService/MakeData" message="tns:IStringService_MakeData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStringService/MakeDataResponse" message="tns:IStringService_MakeData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddClass">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStringService/AddClass" message="tns:IStringService_AddClass_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStringService/AddClassResponse" message="tns:IStringService_AddClass_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IncreaseRequests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStringService/IncreaseRequests" message="tns:IStringService_IncreaseRequests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStringService/IncreaseRequestsResponse" message="tns:IStringService_IncreaseRequests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CountRequests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStringService/CountRequests" message="tns:IStringService_CountRequests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStringService/CountRequestsResponse" message="tns:IStringService_CountRequests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IncreaseClients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStringService/IncreaseClients" message="tns:IStringService_IncreaseClients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStringService/IncreaseClientsResponse" message="tns:IStringService_IncreaseClients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DecreaseClients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStringService/DecreaseClients" message="tns:IStringService_DecreaseClients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStringService/DecreaseClientsResponse" message="tns:IStringService_DecreaseClients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CountClients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStringService/CountClients" message="tns:IStringService_CountClients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStringService/CountClientsResponse" message="tns:IStringService_CountClients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClassifyObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStringService/ClassifyObject" message="tns:IStringService_ClassifyObject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStringService/ClassifyObjectResponse" message="tns:IStringService_ClassifyObject_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IStringService" type="tns:IStringService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReadData">
+      <soap:operation soapAction="http://tempuri.org/IStringService/ReadData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeData">
+      <soap:operation soapAction="http://tempuri.org/IStringService/MakeData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddClass">
+      <soap:operation soapAction="http://tempuri.org/IStringService/AddClass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncreaseRequests">
+      <soap:operation soapAction="http://tempuri.org/IStringService/IncreaseRequests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountRequests">
+      <soap:operation soapAction="http://tempuri.org/IStringService/CountRequests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IncreaseClients">
+      <soap:operation soapAction="http://tempuri.org/IStringService/IncreaseClients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecreaseClients">
+      <soap:operation soapAction="http://tempuri.org/IStringService/DecreaseClients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountClients">
+      <soap:operation soapAction="http://tempuri.org/IStringService/CountClients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClassifyObject">
+      <soap:operation soapAction="http://tempuri.org/IStringService/ClassifyObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StringService">
+    <wsdl:port name="BasicHttpBinding_IStringService" binding="tns:BasicHttpBinding_IStringService">
+      <soap:address location="http://localhost:8080/StringService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

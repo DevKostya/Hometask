@@ -1,0 +1,7 @@
+C:\Users\kcheb\source\repos\lab2\kNN\obj\Debug\kNN.csproj.CoreCompileInputs.cache
+C:\Users\kcheb\source\repos\lab2\kNN\bin\Debug\kNN.exe.config
+C:\Users\kcheb\source\repos\lab2\kNN\bin\Debug\kNN.exe
+C:\Users\kcheb\source\repos\lab2\kNN\bin\Debug\kNN.pdb
+C:\Users\kcheb\source\repos\lab2\kNN\obj\Debug\kNN.exe
+C:\Users\kcheb\source\repos\lab2\kNN\obj\Debug\kNN.pdb
+C:\Users\kcheb\source\repos\lab2\kNN\obj\Debug\kNN.csprojAssemblyReference.cache

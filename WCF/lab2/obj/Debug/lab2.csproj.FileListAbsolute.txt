@@ -1,0 +1,11 @@
+C:\Users\kcheb\source\repos\lab2\lab2\bin\Debug\lab2.exe.config
+C:\Users\kcheb\source\repos\lab2\lab2\bin\Debug\lab2.exe
+C:\Users\kcheb\source\repos\lab2\lab2\bin\Debug\lab2.pdb
+C:\Users\kcheb\source\repos\lab2\lab2\obj\Debug\lab2.csprojAssemblyReference.cache
+C:\Users\kcheb\source\repos\lab2\lab2\obj\Debug\lab2.csproj.CoreCompileInputs.cache
+C:\Users\kcheb\source\repos\lab2\lab2\obj\Debug\lab2.exe
+C:\Users\kcheb\source\repos\lab2\lab2\obj\Debug\lab2.pdb
+C:\Users\kcheb\source\repos\lab2\lab2\bin\Debug\kNN.exe
+C:\Users\kcheb\source\repos\lab2\lab2\bin\Debug\kNN.pdb
+C:\Users\kcheb\source\repos\lab2\lab2\bin\Debug\kNN.exe.config
+C:\Users\kcheb\source\repos\lab2\lab2\obj\Debug\lab2.csproj.CopyComplete
